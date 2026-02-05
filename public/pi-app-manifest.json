@@ -1,0 +1,48 @@
+
+{
+  "name": "Droplink",
+  "short_name": "Droplink",
+  "description": "Unify your links, sell products, and earn Pi on Pi Network with one elegant page.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00BFFF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["social", "productivity", "business"],
+  "lang": "en",
+  "scope": "/",
+  "pi_network": {
+    "app_id": "droplink",
+    "compatible": true,
+    "features": [
+      "authentication",
+      "payments",
+      "ads",
+      "wallet_address"
+    ],
+    "min_pi_browser_version": "2.0.0",
+    "subdomain": "droplink2920",
+    "pi_domain": "droplink2920.pinet.com",
+    "main_domain": "droplinkspace"
+  }
+}

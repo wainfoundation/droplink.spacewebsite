@@ -1,0 +1,98 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "DROPLINK_ENV": "mainnet",
+    "APP_ENVIRONMENT": "mainnet",
+    "VITE_APP_NAME": "Droplink",
+    "VITE_APP_VERSION": "2.0.0",
+    "VITE_APP_DESCRIPTION": "Droplink - Drop All Your Links with Pi Network Integration",
+        "VITE_APP_BASE_URL": "https://droplink-space.lovable.app",
+        "VITE_APP_DOMAIN": "droplink-space.lovable.app",
+        "VITE_APP_SUBDOMAIN": "droplink2920.pinet.com",
+    "VITE_API_BASE_URL": "https://api.droplink.space/api/v1",
+    "VITE_PI_SANDBOX": "false",
+    "VITE_PI_NETWORK": "mainnet",
+    "VITE_PI_ENVIRONMENT": "mainnet",
+    "VITE_PI_SDK_VERSION": "2.0",
+    "VITE_PI_MAINNET": "true",
+    "VITE_PI_TESTNET": "false",
+    "VITE_PI_APP_ID": "droplink",
+    "VITE_PI_SERVER_API_KEY": "ycni5p8hs19mzihvyj5gldy5838kpcqyhd7faka6gxriakocpfpybqm5hpjyqcfx",
+    "VITE_PI_NETWORK_APP_ID": "droplink",
+    "VITE_PI_NETWORK_API_KEY": "ycni5p8hs19mzihvyj5gldy5838kpcqyhd7faka6gxriakocpfpybqm5hpjyqcfx",
+    "VITE_PI_NETWORK_SECRET": "ycni5p8hs19mzihvyj5gldy5838kpcqyhd7faka6gxriakocpfpybqm5hpjyqcfx",
+    "VITE_PI_NETWORK_ENVIRONMENT": "mainnet",
+    "VITE_PI_NETWORK_SCOPES": "username,payments",
+    "VITE_PI_NETWORK_APP_NAME": "Droplink",
+    "VITE_PI_NETWORK_REDIRECT_URL": "https://droplink-space.lovable.app/auth/pi/callback",
+    "VITE_PI_NETWORK_CALLBACK_URL": "https://droplink-space.lovable.app/pi-callback",
+    "VITE_PI_NETWORK_VERSION": "2.0",
+    "VITE_PI_VALIDATION_KEY": "26ec4458680b98edc16b18ed68c2fb7841ee2c9d3b9cfdcfa82de36bea71f64074a2ee5d1fbea04762df431edb1458b44a2ff50679b16d93935b0b645e98174a",
+    "VITE_PI_WALLET_ADDRESS": "GDSXE723WPHZ5RGIJCSYXTPKSOIGPTSXE4RF5U3JTNGTCHXON7ZVD4LJ",
+    "VITE_SUBSCRIPTION_WALLET_ADDRESS": "GDSXE723WPHZ5RGIJCSYXTPKSOIGPTSXE4RF5U3JTNGTCHXON7ZVD4LJ",
+    "VITE_ENABLE_PI_ADS": "true",
+    "VITE_PI_BANNER_ADS_ENABLED": "true",
+    "VITE_PI_INTERSTITIAL_ADS_ENABLED": "true",
+    "VITE_PI_REWARDED_ADS_ENABLED": "true",
+    "VITE_PINET_METADATA_ENABLED": "true",
+    "VITE_PINET_BACKEND_URL": "https://droplink-space.lovable.app",
+    "VITE_PINET_METADATA_TYPE": "backend",
+    "VITE_PINET_CACHE_DURATION": "300",
+    "VITE_ENABLE_PI_AUTH": "true",
+    "VITE_ENABLE_PI_PAYMENTS": "true",
+    "VITE_ENABLE_PI_PROFILES": "true",
+    "VITE_PI_AUTH_ENABLED": "true",
+    "VITE_PI_PAYMENTS_ENABLED": "true",
+    "VITE_PI_ADS_ENABLED": "true",
+    "VITE_PI_PROFILES_ENABLED": "true",
+    "VITE_IS_PRODUCTION": "true",
+    "VITE_IS_MAINNET": "true",
+    "VITE_IS_SANDBOX": "false",
+    "VITE_IS_TESTNET": "false",
+    "VITE_FORCE_MAINNET": "true",
+    "VITE_SUPABASE_URL": "https://jzzbmoopwnvgxxirulga.supabase.co",
+    "VITE_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6emJtb29wd252Z3h4aXJ1bGdhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyMDMxMjUsImV4cCI6MjA3NDc3OTEyNX0.5DqetNG0bvN620X8t5QP-sGEInb17ZCgY0Jfp7_qZWU",
+    "VITE_CORS_ORIGIN": "https://droplink-space.lovable.app",
+    "VITE_API_TIMEOUT": "30000",
+    "VITE_AUTH_TIMEOUT": "30000",
+    "VITE_TOKEN_REFRESH_ENABLED": "true",
+    "VITE_PI_NETWORK_API_URL": "https://api.minepi.com/v2"
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    },
+    {
+      "source": "/static/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}

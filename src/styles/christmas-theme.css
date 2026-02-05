@@ -1,0 +1,716 @@
+/* Christmas Theme Styles - Professional & Eye-Catching Design */
+:root.christmas-theme {
+  --christmas-red: #c41e3a;
+  --christmas-green: #165b33;
+  --christmas-gold: #d4af37;
+  --christmas-white: #ffffff;
+  --christmas-dark: #c41e3a;
+  --christmas-light-red: #f8e7eb;
+  --christmas-light-green: #e8f3ef;
+  --christmas-blue: #0ea5e9;
+  --christmas-accent: #fbbf24;
+}
+
+/* Christmas Background - Elegant gradient */
+:root.christmas-theme {
+  background: linear-gradient(135deg, #c41e3a 0%, #0ea5e9 50%, #165b33 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+body.christmas-theme {
+  background-color: rgba(196, 30, 58, 0.03);
+}
+
+/* Logo replacement for Christmas theme - Switch ALL logos */
+:root.christmas-theme .logo-wrapper,
+:root.christmas-theme .brand-logo,
+:root.christmas-theme [class*="logo"],
+:root.christmas-theme img[alt*="logo"],
+:root.christmas-theme img[alt*="Logo"],
+:root.christmas-theme img[alt*="Droplink"],
+:root.christmas-theme img[alt*="droplink"] {
+  transition: all 0.5s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Replace all logo images with Christmas logo */
+:root.christmas-theme img[src*="droplink"],
+:root.christmas-theme img[src*="logo"],
+:root.christmas-theme img[alt*="logo"],
+:root.christmas-theme img[alt*="Logo"] {
+  content: url('https://i.ibb.co/W4yN9rQ4/Gemini-Generated-Image-uo458huo458huo45-removebg-preview.png') !important;
+  display: block !important;
+}
+
+/* Header Styling */
+:root.christmas-theme header,
+:root.christmas-theme nav {
+  background: linear-gradient(90deg, var(--christmas-red) 0%, var(--christmas-green) 100%);
+  border-bottom: 3px solid var(--christmas-gold);
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+  color: white;
+}
+
+:root.christmas-theme header button,
+:root.christmas-theme nav button {
+  color: white;
+  transition: all 0.3s ease;
+}
+
+:root.christmas-theme header a,
+:root.christmas-theme header span,
+:root.christmas-theme header div,
+:root.christmas-theme nav a,
+:root.christmas-theme nav span,
+:root.christmas-theme nav div {
+  color: white !important;
+}
+
+:root.christmas-theme header button,
+:root.christmas-theme header button *,
+:root.christmas-theme nav button,
+:root.christmas-theme nav button *,
+:root.christmas-theme header [role="button"],
+:root.christmas-theme nav [role="button"],
+:root.christmas-theme header [class*="btn"],
+:root.christmas-theme nav [class*="btn"] {
+  color: white !important;
+}
+
+:root.christmas-theme header button:hover,
+:root.christmas-theme nav button:hover {
+  background-color: var(--christmas-gold);
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+:root.christmas-theme header button:hover *,
+:root.christmas-theme nav button:hover * {
+  color: #ffffff !important;
+}
+
+/* Button Styling - Professional & Eye-Catching */
+:root.christmas-theme .btn,
+:root.christmas-theme button:not(.christmas-toggle-btn),
+:root.christmas-theme [role="button"] {
+  background: linear-gradient(135deg, var(--christmas-red) 0%, #a71a2a 100%);
+  color: white;
+  border: 2px solid var(--christmas-gold);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(196, 30, 58, 0.35);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Red Button (Primary) */
+:root.christmas-theme button.bg-red-600,
+:root.christmas-theme [class*="bg-red"] {
+  background: linear-gradient(135deg, #c41e3a 0%, #a71a2a 100%) !important;
+  color: white !important;
+  border: 2px solid var(--christmas-gold) !important;
+  box-shadow: 0 6px 16px rgba(196, 30, 58, 0.4) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+:root.christmas-theme button.bg-red-600:hover,
+:root.christmas-theme [class*="bg-red"]:hover {
+  background: linear-gradient(135deg, #a71a2a 0%, #8a1420 100%) !important;
+  box-shadow: 0 10px 24px rgba(196, 30, 58, 0.5) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Green Button */
+:root.christmas-theme button.bg-green-600,
+:root.christmas-theme [class*="bg-green"] {
+  background: linear-gradient(135deg, #165b33 0%, #0f4620 100%) !important;
+  color: white !important;
+  box-shadow: 0 6px 16px rgba(22, 91, 51, 0.4) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+:root.christmas-theme button.bg-green-600:hover,
+:root.christmas-theme [class*="bg-green"]:hover {
+  background: linear-gradient(135deg, #0f4620 0%, #0a2f16 100%) !important;
+  box-shadow: 0 10px 24px rgba(22, 91, 51, 0.5) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Blue Button */
+:root.christmas-theme button.bg-blue-600,
+:root.christmas-theme [class*="bg-blue"] {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%) !important;
+  color: white !important;
+  box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+:root.christmas-theme button.bg-blue-600:hover,
+:root.christmas-theme [class*="bg-blue"]:hover {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+  box-shadow: 0 10px 24px rgba(14, 165, 233, 0.5) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Purple Button */
+:root.christmas-theme button.bg-purple-600,
+:root.christmas-theme [class*="bg-purple"] {
+  background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%) !important;
+  color: white !important;
+  box-shadow: 0 6px 16px rgba(147, 51, 234, 0.4) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+:root.christmas-theme button.bg-purple-600:hover,
+:root.christmas-theme [class*="bg-purple"]:hover {
+  background: linear-gradient(135deg, #7e22ce 0%, #6b21a8 100%) !important;
+  box-shadow: 0 10px 24px rgba(147, 51, 234, 0.5) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* General Button Hover */
+:root.christmas-theme .btn::before,
+:root.christmas-theme button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+:root.christmas-theme .btn:hover,
+:root.christmas-theme button:hover {
+  box-shadow: 0 10px 24px rgba(22, 91, 51, 0.4);
+  transform: translateY(-2px);
+}
+
+:root.christmas-theme .btn:hover::before,
+:root.christmas-theme button:hover::before {
+  left: 100%;
+}
+
+/* Hero Section */
+:root.christmas-theme .hero,
+:root.christmas-theme [class*="hero"] {
+  background: linear-gradient(135deg, var(--christmas-red) 0%, var(--christmas-green) 100%) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+:root.christmas-theme .hero::before {
+  content: '❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 2rem;
+  opacity: 0.1;
+  animation: snowfall 20s linear infinite;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Card Styling - Professional Design */
+:root.christmas-theme .card,
+:root.christmas-theme [class*="card"] {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.98) 100%);
+  border: 2px solid var(--christmas-gold);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(196, 30, 58, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+:root.christmas-theme .card::before,
+:root.christmas-theme [class*="card"]::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, var(--christmas-red), var(--christmas-green));
+  border-radius: 14px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+:root.christmas-theme .card:hover,
+:root.christmas-theme [class*="card"]:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(196, 30, 58, 0.2), 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+:root.christmas-theme .card:hover::before,
+:root.christmas-theme [class*="card"]:hover::before {
+  opacity: 0.3;
+}
+
+/* Text Styling - Professional with high contrast and white text support */
+:root.christmas-theme h1,
+:root.christmas-theme h2,
+:root.christmas-theme h3,
+:root.christmas-theme h4,
+:root.christmas-theme h5,
+:root.christmas-theme h6 {
+  color: var(--christmas-dark);
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+:root.christmas-theme p,
+:root.christmas-theme span,
+:root.christmas-theme div,
+:root.christmas-theme a {
+  color: var(--christmas-dark);
+}
+
+/* White text support - ensure visibility */
+:root.christmas-theme .text-white,
+:root.christmas-theme [class*="text-white"] {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+:root.christmas-theme .text-gray,
+:root.christmas-theme [class*="text-gray"] {
+  color: #4b5563 !important;
+}
+
+:root.christmas-theme .text-muted-foreground,
+:root.christmas-theme [class*="muted-foreground"] {
+  color: #64748b !important;
+}
+
+/* Card Title Styling */
+:root.christmas-theme [class*="card-title"],
+:root.christmas-theme .CardTitle {
+  color: var(--christmas-red);
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* Card Description */
+:root.christmas-theme [class*="card-description"],
+:root.christmas-theme .CardDescription {
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+/* Border Colors */
+:root.christmas-theme .border,
+:root.christmas-theme [class*="border"] {
+  border-color: var(--christmas-gold) !important;
+}
+
+:root.christmas-theme .border-b,
+:root.christmas-theme .border-t {
+  border-color: var(--christmas-gold) !important;
+}
+
+/* Link Styling - Professional and Visible */
+:root.christmas-theme a {
+  color: var(--christmas-red);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+:root.christmas-theme a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--christmas-red), var(--christmas-gold));
+  transition: width 0.3s ease;
+}
+
+:root.christmas-theme a:hover {
+  color: var(--christmas-green);
+}
+
+:root.christmas-theme a:hover::after {
+  width: 100%;
+}
+
+/* Form Elements & Switch - Enhanced for visibility */
+:root.christmas-theme input,
+:root.christmas-theme textarea,
+:root.christmas-theme select {
+  border: 2px solid var(--christmas-gold);
+  background-color: var(--christmas-white);
+  color: var(--christmas-dark);
+  transition: all 0.3s ease;
+}
+
+:root.christmas-theme input::placeholder,
+:root.christmas-theme textarea::placeholder {
+  color: #a0aec0;
+}
+
+:root.christmas-theme input:focus,
+:root.christmas-theme textarea:focus,
+:root.christmas-theme select:focus {
+  border-color: var(--christmas-red);
+  box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.2);
+  outline: none;
+}
+
+/* Switch/Toggle Styling */
+:root.christmas-theme [role="switch"],
+:root.christmas-theme .switch {
+  background-color: var(--christmas-gold);
+  transition: all 0.3s ease;
+}
+
+:root.christmas-theme [role="switch"]:checked,
+:root.christmas-theme .switch:checked {
+  background-color: var(--christmas-red);
+}
+
+:root.christmas-theme [role="switch"]:focus-visible {
+  box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.3);
+}
+
+/* Label Styling - Ensure visibility */
+:root.christmas-theme label,
+:root.christmas-theme [class*="label"] {
+  color: var(--christmas-dark);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+:root.christmas-theme label:hover {
+  color: var(--christmas-red);
+}
+
+/* Ensure white text labels are visible */
+:root.christmas-theme label.text-white,
+:root.christmas-theme [class*="label"].text-white {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Badge/Badge Elements */
+:root.christmas-theme .badge,
+:root.christmas-theme [class*="badge"] {
+  background: linear-gradient(135deg, var(--christmas-red) 0%, var(--christmas-green) 100%);
+  color: white;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+/* Footer Styling */
+:root.christmas-theme footer {
+  background: linear-gradient(90deg, var(--christmas-red) 0%, var(--christmas-green) 100%);
+  border-top: 3px solid var(--christmas-gold);
+  color: white;
+}
+
+:root.christmas-theme footer a,
+:root.christmas-theme footer span,
+:root.christmas-theme footer div,
+:root.christmas-theme footer p {
+  color: white !important;
+  text-decoration: none;
+}
+
+:root.christmas-theme footer a:hover {
+  color: var(--christmas-gold);
+  text-decoration: underline;
+}
+
+/* Theme Toggle Panel Animations */
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in.slide-in-from-bottom-4 {
+  animation: slideInFromBottom 0.3s ease-out;
+}
+
+/* Theme Panel Styling */
+:root.christmas-theme .theme-panel,
+.theme-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 248, 248, 0.98) 100%);
+  border: 2px solid #fbbf24;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+/* Header Theme Toggle Button - Always Visible */
+:root.christmas-theme header button:has(svg.lucide-snowflake),
+header button:has(svg.lucide-snowflake) {
+  background: linear-gradient(135deg, #dc2626 0%, #16a34a 100%) !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+  transition: all 0.3s ease;
+  text-shadow: none !important;
+}
+
+:root.christmas-theme header button:has(svg.lucide-snowflake):hover,
+header button:has(svg.lucide-snowflake):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
+}
+
+/* Theme Toggle Button */
+:root.christmas-theme .theme-toggle,
+.theme-toggle {
+  background: linear-gradient(135deg, #dc2626 0%, #16a34a 100%);
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4);
+  transition: all 0.3s ease;
+}
+
+:root.christmas-theme .theme-toggle:hover,
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 30px rgba(22, 163, 74, 0.5);
+}
+
+/* Backdrop */
+.theme-backdrop {
+  backdrop-filter: blur(2px);
+}
+
+/* Snowflake Animation */
+@keyframes snowflake-float {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100px) translateX(50px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+:root.christmas-theme::before {
+  content: '❄️';
+  position: fixed;
+  font-size: 2rem;
+  z-index: 1000;
+  pointer-events: none;
+  animation: snowflake-float 8s infinite;
+}
+
+/* Special elements */
+:root.christmas-theme .feature-icon,
+:root.christmas-theme [class*="icon"] {
+  filter: drop-shadow(0 0 8px var(--christmas-gold));
+  transition: all 0.3s ease;
+}
+
+:root.christmas-theme .feature-icon:hover,
+:root.christmas-theme [class*="icon"]:hover {
+  filter: drop-shadow(0 0 12px var(--christmas-red));
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Testimonial Section */
+:root.christmas-theme .testimonial,
+:root.christmas-theme [class*="testimonial"] {
+  border-left: 4px solid var(--christmas-gold);
+  background: linear-gradient(90deg, rgba(251, 191, 36, 0.1) 0%, transparent 100%);
+}
+
+/* Section Dividers */
+:root.christmas-theme hr,
+:root.christmas-theme [class*="divider"] {
+  border-color: var(--christmas-gold);
+  opacity: 0.5;
+}
+
+/* Success Messages */
+:root.christmas-theme .success,
+:root.christmas-theme [class*="success"] {
+  background-color: rgba(22, 91, 51, 0.1);
+  border: 1px solid var(--christmas-green);
+  color: var(--christmas-green);
+}
+
+/* Error Messages */
+:root.christmas-theme .error,
+:root.christmas-theme [class*="error"] {
+  background-color: rgba(196, 30, 58, 0.1);
+  border: 1px solid var(--christmas-red);
+  color: var(--christmas-red);
+}
+
+/* Warning Messages */
+:root.christmas-theme .warning,
+:root.christmas-theme [class*="warning"] {
+  background-color: rgba(212, 175, 55, 0.1);
+  border: 1px solid var(--christmas-gold);
+  color: #7c2d12;
+}
+
+/* Info Messages */
+:root.christmas-theme .info,
+:root.christmas-theme [class*="info"] {
+  background-color: rgba(14, 165, 233, 0.1);
+  border: 1px solid #0ea5e9;
+  color: #0369a1;
+}
+
+/* Alert Text - Ensure visibility */
+:root.christmas-theme [role="alert"],
+:root.christmas-theme .alert {
+  color: var(--christmas-dark);
+}
+
+:root.christmas-theme [role="alert"] p,
+:root.christmas-theme .alert p {
+  color: inherit;
+}
+
+/* Modal/Dialog Styling */
+:root.christmas-theme .modal,
+:root.christmas-theme [class*="dialog"] {
+  background: linear-gradient(135deg, var(--christmas-white) 0%, rgba(255, 255, 255, 0.9) 100%);
+  border: 2px solid var(--christmas-gold);
+  box-shadow: 0 20px 60px rgba(220, 38, 38, 0.3);
+}
+
+/* Profile Card */
+:root.christmas-theme .profile-card,
+:root.christmas-theme [class*="profile"] {
+  background: linear-gradient(135deg, rgba(248, 248, 248, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%);
+  border: 2px solid var(--christmas-gold);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(22, 163, 74, 0.2);
+}
+
+/* CTA Section */
+:root.christmas-theme [class*="cta"] {
+  background: linear-gradient(135deg, var(--christmas-red) 0%, var(--christmas-green) 100%);
+  color: white;
+}
+
+:root.christmas-theme [class*="cta"] button {
+  background-color: var(--christmas-gold);
+  color: #ffffff;
+  font-weight: 700;
+  border: none;
+}
+
+:root.christmas-theme [class*="cta"] button:hover {
+  background-color: white;
+  transform: scale(1.05);
+}
+
+/* Scroll bar styling */
+:root.christmas-theme ::-webkit-scrollbar {
+  width: 12px;
+}
+
+:root.christmas-theme ::-webkit-scrollbar-track {
+  background: rgba(220, 38, 38, 0.1);
+}
+
+:root.christmas-theme ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--christmas-red) 0%, var(--christmas-green) 100%);
+  border-radius: 6px;
+}
+
+:root.christmas-theme ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--christmas-green) 0%, var(--christmas-red) 100%);
+}
+
+/* Floating particles animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+:root.christmas-theme [class*="floating"] {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse animation for special elements */
+@keyframes pulse-christmas {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(22, 163, 74, 0.4);
+  }
+}
+
+:root.christmas-theme [class*="pulse"] {
+  animation: pulse-christmas 2s infinite;
+}
+
+/* Transition smoothness */
+:root.christmas-theme * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Disable transitions for animations */
+:root.christmas-theme [class*="animate"] {
+  transition: none;
+}
+
+/* Active states */
+:root.christmas-theme .active,
+:root.christmas-theme [aria-current="page"] {
+  color: var(--christmas-red);
+  font-weight: 700;
+  border-bottom: 3px solid var(--christmas-gold);
+}
+
+/* Focus states for accessibility */
+:root.christmas-theme *:focus-visible {
+  outline: 2px solid var(--christmas-red);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  :root.christmas-theme {
+    background: white;
+  }
+
+  :root.christmas-theme * {
+    color: black;
+    background: white;
+  }
+}

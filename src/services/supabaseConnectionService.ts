@@ -224,6 +224,15 @@ class SupabaseConnectionService {
         updated_at TIMESTAMPTZ DEFAULT NOW()
       );
 
+      -- Create blog_stats table
+      CREATE TABLE IF NOT EXISTS blog_stats (
+        slug VARCHAR(255) PRIMARY KEY,
+        likes_count INTEGER DEFAULT 0,
+        views_count INTEGER DEFAULT 0,
+        created_at TIMESTAMPTZ DEFAULT NOW(),
+        updated_at TIMESTAMPTZ DEFAULT NOW()
+      );
+
       -- Create indexes
       CREATE INDEX IF NOT EXISTS idx_user_profiles_username ON user_profiles(username);
       CREATE INDEX IF NOT EXISTS idx_links_user_id ON links(user_id);
@@ -239,6 +248,34 @@ class SupabaseConnectionService {
       ALTER TABLE products ENABLE ROW LEVEL SECURITY;
       ALTER TABLE tips ENABLE ROW LEVEL SECURITY;
       ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
+      ALTER TABLE blog_stats ENABLE ROW LEVEL SECURITY;
+
+      -- Create RPC functions for atomic updates
+      CREATE OR REPLACE FUNCTION increment_blog_view(slug_input TEXT)
+      RETURNS void
+      LANGUAGE plpgsql
+      SECURITY DEFINER
+      AS $$
+      BEGIN
+        INSERT INTO blog_stats (slug, views_count)
+        VALUES (slug_input, 1)
+        ON CONFLICT (slug)
+        DO UPDATE SET views_count = blog_stats.views_count + 1;
+      END;
+      $$;
+
+      CREATE OR REPLACE FUNCTION increment_blog_like(slug_input TEXT, increment_amount INTEGER)
+      RETURNS void
+      LANGUAGE plpgsql
+      SECURITY DEFINER
+      AS $$
+      BEGIN
+        INSERT INTO blog_stats (slug, likes_count)
+        VALUES (slug_input, GREATEST(0, increment_amount))
+        ON CONFLICT (slug)
+        DO UPDATE SET likes_count = GREATEST(0, blog_stats.likes_count + increment_amount);
+      END;
+      $$;
 
       -- Create RLS policies
       CREATE POLICY IF NOT EXISTS "Public read access for user profiles" ON user_profiles
@@ -272,6 +309,15 @@ class SupabaseConnectionService {
         FOR ALL USING (auth.uid()::text = user_id::text);
 
       CREATE POLICY IF NOT EXISTS "Anyone can insert analytics" ON analytics
+        FOR INSERT WITH CHECK (true);
+
+      CREATE POLICY IF NOT EXISTS "Anyone can read blog stats" ON blog_stats
+        FOR SELECT USING (true);
+
+      CREATE POLICY IF NOT EXISTS "Anyone can update blog stats" ON blog_stats
+        FOR UPDATE USING (true);
+        
+      CREATE POLICY IF NOT EXISTS "Anyone can insert blog stats" ON blog_stats
         FOR INSERT WITH CHECK (true);
     `;
 

@@ -41,6 +41,17 @@ const Blog = () => {
   // Static fallback posts if none are loaded
   const staticPosts: BlogPost[] = [
     {
+      id: 3,
+      title: "Droplink Official Launch: The Pi Network Link‑in‑Bio Storefront Built for Creators",
+      excerpt: "Today we’re proud to officially launch Droplink, a modern, customizable link‑in‑bio and storefront platform designed for creators, businesses, and Pi Network pioneers.",
+      category: "Product Updates",
+      author_name: "Droplink Team",
+      created_at: new Date().toISOString(),
+      read_time: "5 min read",
+      featured_image: "https://i.ibb.co/PvhY3gp9/The-First-Web-3-Link-in-Bio-Powerd-by-The-Network.gif",
+      slug: "droplink-official-launch"
+    },
+    {
       id: 1,
       title: "Welcome to Droplink!",
       excerpt: "Discover how Droplink empowers creators and businesses to deliver digital products and build communities.",

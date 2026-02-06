@@ -5,7 +5,6 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { UserProvider } from "@/context/UserContext";
 import { ThemeProvider } from "@/context/ThemeContext";
-import ChristmasThemeToggle from "@/components/ChristmasThemeToggle";
 import { markUserInteraction } from "@/utils/sounds";
 import PiBrowserMobileOptimizer from "@/components/PiBrowserMobileOptimizer";
 import PiBrowserOptimizer from "@/components/PiBrowserOptimizer";
@@ -241,7 +240,6 @@ function App() {
                         {/* Catch-all Route */}
                         <Route path="*" element={<NotFound />} />
                       </Routes>
-                      <ChristmasThemeToggle />
                       <Toaster />
                     </PostAuthAdGate>
                   </Router>

@@ -1,16 +1,222 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
-import { ArrowLeft, Calendar, User, Clock, Share2, Heart } from "lucide-react";
+import { ArrowLeft, Calendar, User, Clock, Share2, Heart, Check, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GoToTop from '@/components/GoToTop';
+import { blogService } from "@/services/blogService";
+import { useToast } from "@/hooks/use-toast";
 
 const BlogPost = () => {
   const { slug } = useParams();
+  const { toast } = useToast();
+  const [isLiked, setIsLiked] = useState(false);
+  const [hasCopied, setHasCopied] = useState(false);
+  const [likesCount, setLikesCount] = useState(0);
+  const [viewsCount, setViewsCount] = useState(0);
+  const viewIncremented = useRef(false);
+
+  // Initial load and realtime subscription
+  useEffect(() => {
+    if (!slug) return;
+
+    // Load initial stats
+    blogService.getStats(slug).then(stats => {
+      if (stats) {
+        setLikesCount(stats.likes_count);
+        setViewsCount(stats.views_count);
+      }
+    });
+
+    // Increment view once per session/mount
+    if (!viewIncremented.current) {
+      blogService.incrementView(slug);
+      viewIncremented.current = true;
+    }
+
+    // Subscribe to realtime updates
+    const subscription = blogService.subscribeToStats(slug, (newStats) => {
+      setLikesCount(newStats.likes_count);
+      setViewsCount(newStats.views_count);
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [slug]);
+
+  useEffect(() => {
+    // Check local storage for like status
+    const likedPosts = JSON.parse(localStorage.getItem('liked_blog_posts') || '[]');
+    if (slug && likedPosts.includes(slug)) {
+      setIsLiked(true);
+    }
+  }, [slug]);
+
+  const handleShare = async () => {
+    const url = window.location.href;
+    // We can't access 'post' here easily if it's defined later, but we can get title from document or generic
+    const title = document.title || 'Droplink Blog';
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: title,
+          text: `Check out this article: ${title}`,
+          url: url,
+        });
+      } catch (err) {
+        console.log('Error sharing:', err);
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(url);
+        setHasCopied(true);
+        toast({
+          title: "Link copied",
+          description: "Blog post link copied to clipboard",
+        });
+        setTimeout(() => setHasCopied(false), 2000);
+      } catch (err) {
+        toast({
+          title: "Error",
+          description: "Failed to copy link",
+          variant: "destructive",
+        });
+      }
+    }
+  };
+
+  const handleLike = async () => {
+    if (!slug) return;
+
+    const newLikedStatus = !isLiked;
+    setIsLiked(newLikedStatus);
+    
+    // Optimistic update
+    setLikesCount(prev => newLikedStatus ? prev + 1 : Math.max(0, prev - 1));
+
+    // Server update
+    await blogService.incrementLike(slug, newLikedStatus ? 1 : -1);
+    
+    const likedPosts = JSON.parse(localStorage.getItem('liked_blog_posts') || '[]');
+    
+    if (newLikedStatus) {
+      if (!likedPosts.includes(slug)) {
+        likedPosts.push(slug);
+      }
+      toast({
+        title: "Thanks for the love!",
+        description: "You liked this post.",
+      });
+    } else {
+      const index = likedPosts.indexOf(slug);
+      if (index > -1) {
+        likedPosts.splice(index, 1);
+      }
+    }
+    
+    localStorage.setItem('liked_blog_posts', JSON.stringify(likedPosts));
+  };
+
 
   const blogPosts = {
+    "droplink-official-launch": {
+      title: "Droplink Official Launch: The Pi Network Link‑in‑Bio Storefront Built for Creators",
+      content: `
+        <p>Today we’re proud to officially launch Droplink, a modern, customizable link‑in‑bio and storefront platform designed for creators, businesses, and Pi Network pioneers. Droplink brings your links, products, payments, and community into one fast, beautiful page you can share anywhere.</p>
+        
+        <h2>What Is Droplink?</h2>
+        <p>Droplink is a link‑in‑bio storefront builder tailored to the Pi ecosystem. It lets you build a branded public bio page, sell products, accept Pi payments, and grow your audience—without needing a website.</p>
+        
+        <h2>How Droplink Works</h2>
+        <ol>
+          <li>Create your profile with Pi Network authentication.</li>
+          <li>Customize your public bio page and add links, products, and media.</li>
+          <li>Enable payments, tips, and subscription features.</li>
+          <li>Share your Droplink URL and grow with analytics and engagement tools.</li>
+        </ol>
+        
+        <h2>Launch Features</h2>
+        <ul>
+          <li><strong>Link‑in‑bio layouts and editing:</strong> Stack, grid, carousel, and showcase layouts with drag‑and‑drop organization.</li>
+          <li><strong>Categories and smart organization:</strong> Commerce, social, media, events, contact, and more.</li>
+          <li><strong>Full theme customization:</strong> Professional themes, color palettes, typography presets, backgrounds, and GIF wallpapers.</li>
+          <li><strong>Storefront and product listings:</strong> Sell digital or physical products with pricing and product detail cards.</li>
+          <li><strong>Public payment pages:</strong> Shareable payment links with real‑time status tracking.</li>
+          <li><strong>Pi Network payments:</strong> Mainnet Pi payments with smart contract support and transaction history.</li>
+          <li><strong>Subscription system:</strong> Paid plans with feature gating and upgrade flow.</li>
+          <li><strong>Analytics dashboard:</strong> Link clicks, views, visitor metrics, device and location insights, and exports.</li>
+          <li><strong>Ad network integration:</strong> Pi Ad Network support for free users with ad‑gated features.</li>
+          <li><strong>Messaging and inbox:</strong> Visitors can message creators directly with optional image attachments.</li>
+          <li><strong>Follow system:</strong> Followers and following counts with real‑time updates.</li>
+          <li><strong>Search and discovery:</strong> Search users by username, sort by followers, and filter by category.</li>
+          <li><strong>Verified badges:</strong> Blue and gold verification tiers for trust and visibility.</li>
+          <li><strong>Background music:</strong> Add ambient audio to your public bio for immersive profiles.</li>
+          <li><strong>Pi wallet QR code:</strong> Display a scannable wallet QR to receive tips and DROP tokens.</li>
+          <li><strong>Virtual card generator:</strong> Create printable, shareable cards with your QR and username.</li>
+          <li><strong>Gift system:</strong> Send and receive token‑based gifts from supporters.</li>
+          <li><strong>Security and data protection:</strong> Supabase, RLS policies, and secure financial data handling.</li>
+        </ul>
+        
+        <h2>Plan Features</h2>
+        <p>Droplink launches with clear plans for every stage of growth.</p>
+        
+        <h3>Free Plan</h3>
+        <ul>
+          <li>Basic profile customization</li>
+          <li>1 custom link and 1 social link</li>
+          <li>Public bio visibility</li>
+          <li>Basic QR sharing</li>
+          <li>Ad‑supported analytics access</li>
+          <li>DropLink watermark</li>
+        </ul>
+        
+        <h3>Premium Plan</h3>
+        <ul>
+          <li>Unlimited custom and social links</li>
+          <li>YouTube video integration</li>
+          <li>Expanded theme and design controls</li>
+          <li>Ad‑free experience</li>
+          <li>Advanced analytics</li>
+          <li>Pi wallet integration and product listings</li>
+          <li>Priority support</li>
+        </ul>
+        
+        <h3>Pro Plan</h3>
+        <ul>
+          <li>Everything in Premium</li>
+          <li>Advanced visitor tracking and AI insights</li>
+          <li>A/B testing and bulk link management</li>
+          <li>API access and data exports</li>
+          <li>White‑labeling options</li>
+          <li>Multi‑profile management and priority support</li>
+        </ul>
+        
+        <h2>Roadmap</h2>
+        <p>We’re continuing to build toward a bigger creator economy on Pi:</p>
+        <ul>
+          <li>Full <code>.pi</code> domain integration</li>
+          <li>Multi‑profile support</li>
+          <li>Theme and block marketplace</li>
+        </ul>
+        
+        <h2>Official Launch Statement</h2>
+        <p>Droplink is now live and production‑ready, bringing a complete creator storefront and payment experience to the Pi Network community. Whether you’re a creator, a seller, or a business, Droplink gives you the tools to launch, grow, and monetize—beautifully and securely.</p>
+        
+        <h2>Get Started</h2>
+        <p>Create your profile, customize your page, add your links and products, and share your Droplink with the world.</p>
+      `,
+      author: "Droplink Team",
+      date: "February 6, 2026",
+      readTime: "5 min read",
+      category: "Product Updates",
+      image: "https://i.ibb.co/PvhY3gp9/The-First-Web-3-Link-in-Bio-Powerd-by-The-Network.gif",
+      likes: 1245,
+      views: 5678
+    },
     "maximize-droplink-profile": {
       title: "How to Maximize Your Droplink Profile",
       content: `
@@ -572,16 +778,25 @@ const BlogPost = () => {
                 <Clock className="w-4 h-4" />
                 <span>{post.readTime}</span>
               </div>
+              <div className="flex items-center gap-2">
+                <Eye className="w-4 h-4" />
+                <span>{viewsCount.toLocaleString()} views</span>
+              </div>
             </div>
             
             <div className="flex gap-3 mb-8">
-              <Button variant="outline" size="sm">
-                <Share2 className="w-4 h-4 mr-2" />
-                Share
+              <Button variant="outline" size="sm" onClick={handleShare}>
+                {hasCopied ? <Check className="w-4 h-4 mr-2 text-green-500" /> : <Share2 className="w-4 h-4 mr-2" />}
+                {hasCopied ? "Copied!" : "Share"}
               </Button>
-              <Button variant="outline" size="sm">
-                <Heart className="w-4 h-4 mr-2" />
-                Like
+              <Button 
+                variant={isLiked ? "default" : "outline"} 
+                size="sm" 
+                onClick={handleLike}
+                className={isLiked ? "bg-red-500 hover:bg-red-600 text-white border-red-500" : ""}
+              >
+                <Heart className={`w-4 h-4 mr-2 ${isLiked ? "fill-current" : ""}`} />
+                {likesCount > 0 ? likesCount.toLocaleString() : "Like"}
               </Button>
             </div>
           </header>
@@ -590,7 +805,7 @@ const BlogPost = () => {
             <img 
               src={post.image} 
               alt={post.title}
-              className="w-full h-64 md:h-96 object-cover rounded-xl"
+              className="w-full h-auto rounded-xl"
             />
           </div>
           

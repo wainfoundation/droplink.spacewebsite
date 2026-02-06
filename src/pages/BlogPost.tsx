@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -6,7 +6,6 @@ import CTA from "@/components/CTA";
 import { ArrowLeft, Calendar, User, Clock, Share2, Heart, Check, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GoToTop from '@/components/GoToTop';
-import { blogService } from "@/services/blogService";
 import { useToast } from "@/hooks/use-toast";
 
 const BlogPost = () => {
@@ -16,41 +15,11 @@ const BlogPost = () => {
   const [hasCopied, setHasCopied] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
   const [viewsCount, setViewsCount] = useState(0);
-  const viewIncremented = useRef(false);
-
-  // Initial load and realtime subscription
-  useEffect(() => {
-    if (!slug) return;
-
-    // Load initial stats
-    blogService.getStats(slug).then(stats => {
-      if (stats) {
-        setLikesCount(stats.likes_count);
-        setViewsCount(stats.views_count);
-      }
-    });
-
-    // Increment view once per session/mount
-    if (!viewIncremented.current) {
-      blogService.incrementView(slug);
-      viewIncremented.current = true;
-    }
-
-    // Subscribe to realtime updates
-    const subscription = blogService.subscribeToStats(slug, (newStats) => {
-      setLikesCount(newStats.likes_count);
-      setViewsCount(newStats.views_count);
-    });
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [slug]);
 
   useEffect(() => {
     // Check local storage for like status
     const likedPosts = JSON.parse(localStorage.getItem('liked_blog_posts') || '[]');
-    if (slug && likedPosts.includes(slug)) {
+    if (likedPosts.includes(slug)) {
       setIsLiked(true);
     }
   }, [slug]);
@@ -89,17 +58,10 @@ const BlogPost = () => {
     }
   };
 
-  const handleLike = async () => {
-    if (!slug) return;
-
+  const handleLike = () => {
     const newLikedStatus = !isLiked;
     setIsLiked(newLikedStatus);
-    
-    // Optimistic update
-    setLikesCount(prev => newLikedStatus ? prev + 1 : Math.max(0, prev - 1));
-
-    // Server update
-    await blogService.incrementLike(slug, newLikedStatus ? 1 : -1);
+    setLikesCount(prev => newLikedStatus ? prev + 1 : prev - 1);
     
     const likedPosts = JSON.parse(localStorage.getItem('liked_blog_posts') || '[]');
     
@@ -725,6 +687,13 @@ const BlogPost = () => {
   };
 
   const post = blogPosts[slug as keyof typeof blogPosts];
+
+  useEffect(() => {
+    if (post) {
+      setLikesCount((post.likes || 0) + (isLiked ? 1 : 0));
+      setViewsCount((post.views || 0) + 1);
+    }
+  }, [slug, isLiked]); // Depend on slug and isLiked, not post object itself to avoid infinite loop if post is recreated
 
   if (!post) {
     return (
